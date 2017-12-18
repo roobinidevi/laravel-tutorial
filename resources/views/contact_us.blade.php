@@ -17,7 +17,7 @@
         @endforeach
     </ul>
 
-    {!! Form::open(array('url' => 'contactus/', 'class' => 'form')) !!}
+    {!! Form::open(array('url' => 'contactus/store', 'class' => 'form')) !!}
 
     <div class="col-xs-6">
         <div class="form-group">
