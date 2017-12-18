@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use function view;
 
-class RoleController extends Controller {
+class ContactusController extends Controller {
 
     /**
      * Display a listing of the resource.
@@ -20,8 +20,7 @@ class RoleController extends Controller {
     }
 
     public function index() {
-        $role = Role::all();
-        return view('roles.index', compact('role'));
+        //
     }
 
     /**
@@ -30,7 +29,7 @@ class RoleController extends Controller {
      * @return Response
      */
     public function create() {
-        return view('roles.create');
+        return view('contact_us');
     }
 
     /**
@@ -40,9 +39,17 @@ class RoleController extends Controller {
      * @return Response
      */
     public function store(Request $request) {
+        Mail::send('emails.contactus', array(
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+            'user_message' => $request->get('message')
+                ), function($message) use ($request) {
+            $message->from('admin@gmail.com');
+            $message->to($request->get('email'), 'Admin')->subject('Contact Form');
+        });
 
-        $data = Role::create(['name' => $request->name]);
-        return Redirect::to('role');
+        return Redirect::to('contactus/create')
+                        ->with('message', 'Thanks for contacting us!');
     }
 
     /**
@@ -52,8 +59,7 @@ class RoleController extends Controller {
      * @return Response
      */
     public function show($id) {
-        $role_show = Role::find($id);
-        return view('roles.show', compact('role_show'));
+        //
     }
 
     /**
@@ -63,8 +69,7 @@ class RoleController extends Controller {
      * @return Response
      */
     public function edit($id) {
-        $role = Role::find($id);
-        return view('roles.edit', compact('role'));
+        //
     }
 
     /**
@@ -75,10 +80,7 @@ class RoleController extends Controller {
      * @return Response
      */
     public function update(Request $request, $id) {
-        $role_update = Role::find($id);
-        $role_update->name = $request->name;
-        $role_update->save();
-        return Redirect::to('role');
+        //
     }
 
     /**
@@ -88,9 +90,7 @@ class RoleController extends Controller {
      * @return Response
      */
     public function destroy($id) {
-        $role_del = Role::find($id);
-        $role_del->delete();
-        return Redirect::to('role');
+        //
     }
 
 }
