@@ -23,4 +23,3 @@ Route::resource('role','RoleController');
 Route::resource('user','UserController');
 Route::get('contactus','ContactusController@create');
 Route::post('contactus/store','ContactusController@store');
-Route::get('/check', 'MailChimpController@create');
