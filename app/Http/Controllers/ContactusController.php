@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Validator;
 use function redirect;
 use function view;
 
@@ -41,18 +40,11 @@ class ContactusController extends Controller {
      * @return Response
      */
     public function store(Request $request) {
-        $validator = Validator::make($request->all(), [
-                    'name' => 'required',
-                    'email' => 'required|email',
-                    'message' => 'required',
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'message' => 'required',
         ]);
-
-        if ($validator->fails()) {
-            return redirect('contactus/create')
-                            ->withErrors($validator)
-                            ->withInput();
-        }
-
         Mail::send('emails.contactus', array(
             'name' => $request->get('name'),
             'email' => $request->get('email'),
@@ -62,7 +54,7 @@ class ContactusController extends Controller {
             $message->to($request->get('email'), 'Admin')->subject('Contact Form');
         });
 
-        return Redirect::to('contactus/create')
+        return Redirect::to('contactus')
                         ->with('message', 'Thanks for contacting us!');
     }
 
