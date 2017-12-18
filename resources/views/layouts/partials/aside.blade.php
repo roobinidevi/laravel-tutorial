@@ -21,7 +21,12 @@
             </li>
             <li>
                 <a href="{{ url('role') }}">
-                    <i class="fa fa-th"></i> <span>Role</span>
+                    <i class="fa fa-circle-o"></i> <span>Role</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('contactus/create') }}">
+                    <i class="fa fa-circle-o"></i> <span>Contact Us</span>
                 </a>
             </li>
         </ul>

@@ -43,11 +43,7 @@
                                 <a href="{{ URL::to('user/' . Auth::user()->id . '/edit') }}" class="btn btn-default btn-flat">Edit Profile</a>
                             </div>
                             <div class="pull-right">
-                                <a href="{{ route('logout') }}" class="btn btn-default btn-flat" onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">Sign out</a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
+                                <a href="{{ route('logout') }}" class="btn btn-default btn-flat">Sign out</a>
                             </div>
                         </li>
                     </ul>
