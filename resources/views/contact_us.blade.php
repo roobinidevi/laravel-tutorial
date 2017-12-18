@@ -23,7 +23,7 @@
         <div class="form-group">
 
             {!! Form::text('name', null, 
-            array('required', 
+            array(
             'class'=>'form-control', 
             'placeholder'=>'Your name')) !!}
         </div>
@@ -34,7 +34,7 @@
         <div class="form-group">
 
             {!! Form::text('email', null,
-            array('required', 
+            array(
             'class'=>'form-control',
             'placeholder'=>'Your e-mail address')) !!}
         </div>
@@ -44,7 +44,7 @@
     <div class="col-xs-6">
         <div class="form-group">
             {!! Form::textarea('message', null,
-            array('required', 
+            array( 
             'class'=>'form-control', 
             'placeholder'=>'Your message')) !!}
         </div>
