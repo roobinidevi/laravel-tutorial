@@ -21,5 +21,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::resource('role','RoleController');
 Route::resource('user','UserController');
-Route::resource('contactus','ContactusController');
+Route::get('contactus','ContactusController@create');
+Route::post('contactus/store','ContactusController@store');
 Route::get('/check', 'MailChimpController@create');
