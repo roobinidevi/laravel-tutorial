@@ -12,12 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('login');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::resource('role','RoleController');
 Route::resource('user','UserController');
+Route::resource('contactus','ContactusController');
 Route::get('/check', 'MailChimpController@create');
