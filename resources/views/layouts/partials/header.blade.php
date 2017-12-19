@@ -38,6 +38,13 @@
                                 {{ Auth::user()->name }}
                             </p>
                         </li>
+                        <li class="user-body">
+                            <div class="row">
+                                <div class="col-xs-4 text-center">
+                                    <a href="{{ url('changePassword') }}">Change Password</a>
+                                </div>
+                            </div>
+                        </li>
                         <li class="user-footer">
                             <div class="pull-left">
                                 <a href="{{ URL::to('user/' . Auth::user()->id . '/edit') }}" class="btn btn-default btn-flat">Edit Profile</a>
