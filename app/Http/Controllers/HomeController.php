@@ -39,15 +39,12 @@ class HomeController extends Controller {
         $request->validate([
             'current-password' => 'required',
             'new-password' => 'required|different:current-password',
-            'confirm-password' => 'required',
+            'confirm-password' => 'required|same:new-password',
         ]);
 
         if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
             // The passwords matches
             return redirect()->back()->with("error", "Your current password does not matches with the password you provided. Please try again.");
-        }
-        if($request->get('new-password') != $request->get('confirm-password')) {
-            return redirect()->back()->with("error","New Password and Confirm Password must be same");
         }
         $user = Auth::user();
         $user->password = bcrypt($request->get('new-password'));
