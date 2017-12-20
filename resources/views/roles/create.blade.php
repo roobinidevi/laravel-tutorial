@@ -11,12 +11,14 @@
            </div>
     @endif
 
-    <form method="POST" action="{{ url('role/') }}">
-        {{ csrf_field() }}
-        <div class="col-xs-6">
-            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                <input id="name" type="text" class="form-control" name="name" placeholder="Role name" value="{{ old('name') }}" required autofocus>
+    {!! Form::open(array('url' => 'role', 'class' => 'form','method' => 'post')) !!}
+    {{ csrf_field() }}
 
+    <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">Role Name</label>
+        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+            <div class="col-sm-4">
+                {!! Form::text('name',null, array('class' => 'form-control','id' => 'name')) !!}
                 @if ($errors->has('name'))
                 <span class="help-block">
                     <strong>{{ $errors->first('name') }}</strong>
@@ -24,15 +26,12 @@
                 @endif
             </div>
         </div>
-
-        <div class="clearfix "></div>
-        <div class="row">
-            <div class="col-xs-4">
-                <button type="submit" class="btn btn-primary">
-                    Create
-                </button>
-            </div>
-        </div>
-    </form>
+    </div>
+    <div class="clearfix "></div>
+    <div class="form-group">
+        {!! Form::submit('Create', 
+        array('class'=>'btn btn-primary')) !!}
+    </div>
+    {!! Form::close() !!}
 </div>
 @endsection
