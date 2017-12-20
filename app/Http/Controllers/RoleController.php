@@ -40,7 +40,9 @@ class RoleController extends Controller {
      * @return Response
      */
     public function store(Request $request) {
-
+        $request->validate([
+           'name' => 'required|unique:roles,name', 
+        ]);
         $data = Role::create(['name' => $request->name]);
         return Redirect::to('role');
     }
@@ -75,6 +77,9 @@ class RoleController extends Controller {
      * @return Response
      */
     public function update(Request $request, $id) {
+        $request->validate([
+            'name' => 'required|unique:roles,name,'.$id,
+        ]);
         $role_update = Role::find($id);
         $role_update->name = $request->name;
         $role_update->save();
