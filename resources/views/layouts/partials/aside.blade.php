@@ -25,6 +25,11 @@
                 </a>
             </li>
             <li>
+                <a href="{{ url('article') }}">
+                    <i class="fa fa-circle-o"></i> <span>Article</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ url('contactus') }}">
                     <i class="fa fa-circle-o"></i> <span>Contact Us</span>
                 </a>
